@@ -22,9 +22,21 @@ REDIS_URL= config("REDIS_URL")
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": config("REDIS_URL"),
+        "LOCATION": REDIS_URL,
+        "TIMEOUT": 300,
+        "OPTIONS": {
+            "socket_connect_timeout": 5,
+            "socket_timeout": 5,
+            "retry_on_timeout": True,
+        },
     }
 }
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#         "LOCATION": config("REDIS_URL"),
+#     }
+# }
 
 CORS_ALLOWED_ORIGINS = [
     "https://quantumways-api-staging.onrender.com",
