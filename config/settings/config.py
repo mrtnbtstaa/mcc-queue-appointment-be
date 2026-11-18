@@ -18,14 +18,6 @@ PASSWORD_RESET_TIMEOUT = 120
 
 IDEMPOTENCY_TTL = 600 # 10 minutes
 
-# SECURE_SSL_REDIRECT = True
-
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
-
 # Template api configuration
 WITH_EMAIL_VERIFICATION = False # Set to True to require email verification via Gmail; set to False to skip sending verification emails.
 ENABLE_SOFT_DELETE = False # Set to True to enable soft delete functionality across models, or False to keep hard deletes. 
