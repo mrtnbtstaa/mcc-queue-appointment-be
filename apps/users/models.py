@@ -12,8 +12,27 @@ class UserRole(models.TextChoices):
 
 class Course(models.TextChoices):
     BSIT = "bsit", "BSIT"
-    BSCS = "bscs", "BSCS"
-    BSIS = "bsis", "BSIS"
+    BSHM = "bshm", "BSHM"
+    BSTM = "bstm", "BSTM"
+    BSA = "bsa", "BSA"
+    BSCA = "bsca", "BSCA"
+    BSE = "bse", "BSE"
+    BSMA = "bsma", "BSMA"
+    BSOA = "bsoa", "BSOA"
+    BEED = "beed", "BEED"
+    BECED = "beced", "BECED"
+    BSED_ENGLISH = "bsed-english", "BSED English"
+    BSED_FILIPINO = "bsed-filipino", "BSED Filipino"
+    BSED_MATH = "bsed-math", "BSED Math"
+    BSED_SCIENCE = "bsed-science", "BSED Science"
+    BSED_SOCIAL_STUDIES = "bsed-social-studies", "BSED Social Studies"
+    BPED = "bped", "BPED"
+    BTVTE = "btvte", "BTVTE"
+    AB_HISTORY = "ab-history", "AB History"
+    AB_PSYCHOLOGY = "ab-psychology", "AB Psychology"
+    BPA = "bpa", "BPA"
+    BSBIO = "bsbio", "BSBIO"
+    BSLM = "bslm", "BSLM"
 
 class YearLevel(models.TextChoices):
     FIRST_YEAR = "1", "First Year"
@@ -37,7 +56,7 @@ class User(AbstractUser, TimestampModel):
 
     course = models.CharField(
         choices=Course.choices,
-        max_length=10,
+        max_length=30,
         null=True,
         blank=True
     )

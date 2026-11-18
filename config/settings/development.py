@@ -35,3 +35,6 @@ CACHES = {
 #     secure=True,
 # )
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:60234"
+]

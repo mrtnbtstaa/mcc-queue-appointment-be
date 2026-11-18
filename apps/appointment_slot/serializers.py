@@ -11,6 +11,10 @@ class AppointmentSlotListSerializer(serializers.ModelSerializer):
         read_only=True,
     )
 
+    remaining_capacity = serializers.IntegerField(
+        read_only=True,
+    )
+
     # status_display = serializers.CharField(
     #     source="get_status_display",
     #     read_only=True,
@@ -26,6 +30,7 @@ class AppointmentSlotListSerializer(serializers.ModelSerializer):
             "start_time",
             "end_time",
             "capacity",
+            "remaining_capacity",
             "status",
             # "status_display",
         )
