@@ -62,7 +62,7 @@ class AuditLog(TimestampModel):
     )
 
     user_agent = models.CharField(
-        max_length=50,
+        max_length=500,
         blank=True,
         null=True
     )
