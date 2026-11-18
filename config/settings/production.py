@@ -26,9 +26,7 @@ CACHES = {
     }
 }
 
-
 CORS_ALLOWED_ORIGINS = [
-    "https://quantumways-api-staging.onrender.com"
-    "http://localhost:8000",  # or the frontend URL
-    "http://127.0.0.1:5500",  # or the frontend URL
+    "https://quantumways-api-staging.onrender.com",
+    "https://mcc-queue-appointment.vercel.app"
 ]
