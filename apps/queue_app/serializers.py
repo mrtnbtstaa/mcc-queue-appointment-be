@@ -237,6 +237,11 @@ class QueueStatusSerializer(serializers.ModelSerializer):
         elif status == QueueStatus.COMPLETED:
             instance.completed_at = now
 
+            appointment = instance.appointment
+            if appointment.status != Appointment.Status.COMPLETED:
+                appointment.status = Appointment.Status.COMPLETED
+                appointment.save(update_fields=["status", "updated_at"])
+
         instance.save(
             update_fields=[
                 "status",
