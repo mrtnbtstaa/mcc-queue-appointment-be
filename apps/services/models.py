@@ -3,9 +3,14 @@ from django.core.validators import MinValueValidator
 import uuid
 
 class ServiceCategory(models.TextChoices):
-    ACADEMIC_ENROLLMENT = "Enrollment", "Academic Enrollment"
-    FINANCIAL_CLEARANCE = "Certificates", "Certificates"
-    GRADUATION = "Records", "Transcript & Records"
+    ADMISSION = "Admission", "Admission"
+    ENROLLMENT = "Enrollment", "Enrollment"
+    STUDENT_RECORDS = "Records", "Student Records"
+    CERTIFICATIONS = "Certificates", "Certificates & Documents"
+    ACADEMIC_CONCERNS = "Academic", "Academic Concerns"
+    GRADUATION = "Graduation", "Graduation"
+    CLEARANCE = "Clearance", "Clearance"
+    TRANSFER = "Transfer", "Transfer & Withdrawal"
 
 class DocumentService(models.Model):
 
@@ -19,7 +24,7 @@ class DocumentService(models.Model):
     category = models.CharField(
         max_length=50,
         choices=ServiceCategory.choices,
-        default=ServiceCategory.ACADEMIC_ENROLLMENT,
+        default=ServiceCategory.ADMISSION,
     )
     
     fee = models.DecimalField(

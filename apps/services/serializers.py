@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from common.serializers.fields import RequiredCharField, RequiredListField
-from .models import DocumentService
+from .models import DocumentService, ServiceCategory
 
 
 # ------------------------------------------
@@ -40,6 +40,11 @@ class DocumentServiceWriteSerializer(serializers.ModelSerializer):
     """Used for create/update."""
 
     name = RequiredCharField(label="Service Name", max_length=255)
+
+    category = RequiredCharField(
+        label="Category",
+        write_only=True
+    )
     
     required_documents = RequiredListField(
         label="Required Student Documents",
@@ -61,6 +66,25 @@ class DocumentServiceWriteSerializer(serializers.ModelSerializer):
         )
 
     def validate(self, attrs):
+
+        category = attrs.get("category")
+
+        if category not in ServiceCategory.values:
+            raise serializers.ValidationError({
+                "category": ["Invalid category value."]
+            })
+
+        query = DocumentService.objects.filter(category=category)
+
+        if self.instance:
+            query = query.exclude(pk=self.instance.pk)
+
+        if query.exists():
+            raise serializers.ValidationError({
+                "category": ["A service with this category already exists."]
+            })
+
+
         duration_min = attrs.get("duration_min", getattr(self.instance, "duration_min", 0))
         duration_max = attrs.get("duration_max", getattr(self.instance, "duration_max", 0))
         if duration_max < duration_min:
