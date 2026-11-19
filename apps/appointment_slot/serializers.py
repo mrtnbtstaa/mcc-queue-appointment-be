@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from django.utils import timezone
+
 from apps.services.models import DocumentService
 from common.serializers.fields import RequiredCharField, RequiredDateField, RequiredIntegerField
 from .models import AppointmentSlot, Status
@@ -76,6 +78,20 @@ class AppointmentSlotWriteSerializer(serializers.ModelSerializer):
             "capacity",
             "status",
         )
+
+    def validate_appointment_date(self, value):
+        # Editing a past slot may keep its date; scheduling a new past date may not.
+        unchanged = (
+            self.instance is not None
+            and self.instance.appointment_date == value
+        )
+
+        if value < timezone.localdate() and not unchanged:
+            raise serializers.ValidationError(
+                "Appointment date cannot be in the past."
+            )
+
+        return value
 
     def validate(self, attrs):
         start_time = attrs.get(
