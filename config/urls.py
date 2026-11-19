@@ -1,10 +1,15 @@
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+def ping(request):
+    return JsonResponse({"status": "ok"})
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ping/', ping, name='ping'),
     path("api/v1/", include("api.authentication.v1.urls")),
     path("api/v1/", include("api.users.v1.urls")),
     path("api/v1/", include("api.services.v1.urls")),
