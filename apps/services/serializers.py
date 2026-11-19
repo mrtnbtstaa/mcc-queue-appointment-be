@@ -39,13 +39,8 @@ class DocumentServiceListSerializer(serializers.ModelSerializer):
 class DocumentServiceWriteSerializer(serializers.ModelSerializer):
     """Used for create/update."""
 
-    # 1. Using RequiredCharField for the Name
     name = RequiredCharField(label="Service Name", max_length=255)
     
-    # 2. Using RequiredListField for Required Documents
-    # Note: RequiredListField requires a min_length. I set it to 1.
-    # If you allow services with NO required documents, change to min_length=0 
-    # (but RequiredListField forces allow_empty=False by default).
     required_documents = RequiredListField(
         label="Required Student Documents",
         min_length=1,
