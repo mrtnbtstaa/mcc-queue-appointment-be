@@ -8,7 +8,7 @@ from apps.queue_app.models import QueueStatus
 from apps.services.models import ServiceCategory
 from .models import Course
 from .selectors import UserSelector
-from .serializers import UserSerializer
+from .serializers import UserSerializer, UserUpdateProfileSerializer
 
 
 class FilterOptionsView(PublicBaseApiView):
@@ -57,7 +57,7 @@ class UsersViewSet(BaseModelViewSet, ProtectedBaseAPiView):
     serializer_action_classes = {
         "list": UserSerializer,
         "retrieve": UserSerializer,
-        "update": UserSerializer
+        "update": UserUpdateProfileSerializer
     }
 
     

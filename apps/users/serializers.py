@@ -42,6 +42,16 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
 class UserUpdateProfileSerializer(serializers.ModelSerializer):
 
+    name = RequiredCharField(
+        write_only=True,
+        label="Full Name"
+    )
+
+    student_id = RequiredCharField(
+        write_only=True,
+        label="Student ID"
+    )
+
     email = RequiredEmailField(
         write_only=True,
         label="Email"
